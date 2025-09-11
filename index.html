@@ -120,11 +120,13 @@
       letter-spacing: .01em;
       text-align: center;
       max-width: 90px;
+      white-space: normal;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      line-height: 1.2em;
+      text-overflow: unset;
+      line-height: 1.15em;
       display: block;
+      min-height: 2.2em;
+      max-height: 2.4em;
     }
     .story-text { font-style: italic; font-size: 1.07em; color: #857c5a; margin-bottom: 1.1em;}
     .answer-input, .story-input {
@@ -145,7 +147,7 @@
       h1 { font-size: 1.45em;}
       .badge-img { width: 68px; height: 68px;}
       .draw-icon { width: 65px; height: 54px; font-size: 1em;}
-      .draw-icon-label { font-size: 0.72em; max-width: 54px;}
+      .draw-icon-label { font-size: 0.72em; max-width: 54px; min-height: 1.4em; max-height: 2.1em;}
       .draw-icon svg { width: 24px; height: 24px;}
     }
   </style>
