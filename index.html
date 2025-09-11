@@ -89,12 +89,14 @@
       background: #e3c57d; color: #fff; border-color: #b79f68;
     }
     .draw-icons-group { 
-      display: flex; flex-wrap: wrap; gap: 24px; 
+      display: flex; flex-wrap: wrap; gap: 26px; 
       justify-content: center; align-items: center; margin-bottom: 1.4em;
     }
     .draw-icon {
-      width: 72px; height: 72px; border-radius: 18px; background: rgba(246,244,239,0.94);
-      border: 2.5px solid #e3c57d; display: flex; flex-direction: column;
+      width: 90px; height: 90px; border-radius: 18px;
+      background: rgba(246,244,239,0.94);
+      border: 2.5px solid #e3c57d;
+      display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       cursor: pointer; transition: border-color 0.18s, box-shadow 0.18s;
       box-shadow: 0 2px 16px rgba(183,159,104,0.09);
@@ -106,21 +108,18 @@
       border-color: #b79f68; box-shadow: 0 2px 12px rgba(183,159,104,0.12)
     }
     .draw-icon-label {
-      margin-top: 0.15em;
-      font-size: 0.97em;
+      margin-top: 0.1em;
+      font-size: 1em;
       font-weight: 500;
       color: #857c5a;
-      font-style: italic;
       letter-spacing: .01em;
       text-align: center;
-      max-width: 100%;
-      white-space: normal;
-      overflow: visible;
-      text-overflow: unset;
-      line-height: 1.1em;
+      max-width: 90px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-height: 1.2em;
       display: block;
-      min-height: 2em;
-      word-break: break-word;
     }
     .story-text { font-style: italic; font-size: 1.07em; color: #857c5a; margin-bottom: 1.1em;}
     .answer-input, .story-input {
@@ -140,8 +139,8 @@
       .main-container { max-width: 99vw; padding: 0.8em 0.2em;}
       h1 { font-size: 1.45em;}
       .badge-img { width: 68px; height: 68px;}
-      .draw-icon { width: 46px; height: 46px; font-size: 1.18em;}
-      .draw-icon-label { font-size: 0.75em; min-height: 1.4em;}
+      .draw-icon { width: 54px; height: 54px; font-size: 1em;}
+      .draw-icon-label { font-size: 0.72em; max-width: 54px;}
     }
   </style>
 </head>
