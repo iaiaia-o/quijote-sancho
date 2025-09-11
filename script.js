@@ -1,34 +1,95 @@
 // --- Datos del Test (Preguntas, Puntos Fuertes y Citas) ---
 const quizData = [
-  {
-    type: 'test',
-    title: "Ante un proyecto que implica un riesgo significativo pero una alta recompensa, tu primer instinto es:",
-    options: [
-      { text: "Lanzarme, confiando en que la visión nos guiará en el camino.", value: "quijote" },
-      { text: "Analizar los detalles, medir los posibles resultados y crear un plan sólido.", value: "sancho" },
-      { text: "Buscar un punto intermedio: un plan audaz pero con hitos de control claros.", value: "mixto" }
-    ]
-  },
-  {
-    type: 'test',
-    title: "Un miembro clave del equipo muestra dudas sobre la estrategia. ¿Cómo reaccionas?",
-    options: [
-      { text: "Le transmito mi pasión y la grandeza del objetivo para reavivar su entusiasmo.", value: "quijote" },
-      { text: "Escucho atentamente sus preocupaciones para entender su perspectiva y ajustar el plan si es necesario.", value: "sancho" },
-      { text: "Organizo una sesión para alinear la visión con la realidad del equipo, buscando un compromiso.", value: "mixto" }
-    ]
-  },
-  {
-    type: 'test',
-    title: "¿Qué frase resuena más contigo como líder?",
-    options: [
-      { text: "'El que no se atreve a soñar, no tiene el combustible para actuar'.", value: "quijote" },
-      { text: "'Paso a paso se llega lejos, pero solo si el primer paso es firme'.", value: "sancho" },
-      { text: "'La mejor visión es la que se puede explicar con los pies en la tierra'.", value: "mixto" }
-    ]
-  },
-  // ... (Las otras 7 preguntas del test original pueden ir aquí)
-  // Para simplificar, continuo con 3 preguntas, pero el sistema está listo para las 10
+    {
+        type: 'test',
+        title: "En una reunión inesperada, ¿cómo actúas primero?",
+        options: [
+            { text: "Propongo una idea audaz y original", value: "quijote" },
+            { text: "Escucho y analizo antes de decidir", value: "sancho" },
+            { text: "Busco una solución creativa en equipo", value: "mixto" }
+        ]
+    },
+    {
+        type: 'test',
+        title: "¿Qué símbolo te inspira más cuando afrontas el cambio?",
+        options: [
+            { text: "El molino: desafío y visión", value: "quijote" },
+            { text: "El camino: prudencia y constancia", value: "sancho" },
+            { text: "La estrella: guía en lo desconocido", value: "mixto" }
+        ]
+    },
+    {
+        type: 'test', // Simplificado de 'open' para que puntúe mejor en este formato
+        title: "Imagina que tienes que convencer a tu equipo de embarcarse en una aventura arriesgada. ¿Cuál sería el núcleo de tu mensaje?",
+        options: [
+            { text: "Apelar a la grandeza del sueño y al honor de conseguirlo.", value: "quijote"},
+            { text: "Presentar un plan detallado de los beneficios y riesgos controlados.", value: "sancho"},
+            { text: "Mostrar cómo esta aventura nos hará crecer como equipo y profesionales.", value: "mixto"}
+        ]
+    },
+    {
+        type: 'test', // Simplificado de 'story'
+        title: "El equipo se encuentra ante un cruce de caminos. Una senda es desconocida y prometedora; la otra, segura y predecible. ¿Qué haces?",
+        options: [
+            { text: "Tomar el sendero desconocido, la recompensa justifica el riesgo.", value: "quijote" },
+            { text: "Investigar el camino seguro, es mejor avanzar sobre certezas.", value: "sancho" },
+            { text: "Enviar una pequeña avanzadilla a explorar el nuevo camino antes de decidir.", value: "mixto" }
+        ]
+    },
+    {
+        type: 'test', // Simplificado de 'icons'
+        title: "Elige la combinación de herramientas que mejor representa tu liderazgo:",
+        options: [
+            { text: "Una brújula y un mapa de estrellas (Visión y dirección).", value: "quijote"},
+            { text: "Una balanza y un manual de procedimientos (Equilibrio y método).", value: "sancho"},
+            { text: "Un lienzo en blanco y un equipo de herramientas (Creatividad y capacidad).", value: "mixto"}
+        ]
+    },
+    {
+        type: 'test',
+        title: "¿Te lanzas sin conocer todos los detalles o planificas minuciosamente antes de avanzar?",
+        options: [
+            { text: "Me lanzo y confío en mi intuición para resolver sobre la marcha.", value: "quijote" },
+            { text: "Planifico cada paso, prefiero no dejar nada al azar.", value: "sancho" },
+            { text: "Diseño un plan flexible que pueda adaptarse a los imprevistos.", value: "mixto" }
+        ]
+    },
+    {
+        type: 'test', // Simplificado de 'order'
+        title: "En tu proceso ideal de toma de decisiones, ¿qué va primero?",
+        options: [
+            { text: "La Idea: la chispa creativa que lo inicia todo.", value: "quijote"},
+            { text: "El Análisis: entender el terreno antes de dar el primer paso.", value: "sancho"},
+            { text: "La Acción: es mejor empezar y corregir que esperar a tenerlo todo perfecto.", value: "mixto"}
+        ]
+    },
+    {
+        type: 'test', // Simplificado de 'story'
+        title: "Se debate sobre arriesgarse en una nueva aventura empresarial. ¿Qué aportas tú a la conversación?",
+        options: [
+            { text: "Animo al equipo a soñar en grande y visualizar el éxito.", value: "quijote" },
+            { text: "Recuerdo la importancia de medir los riesgos y asegurar los recursos.", value: "sancho" },
+            { text: "Busco una alternativa creativa que combine la ambición con la seguridad.", value: "mixto" }
+        ]
+    },
+    {
+        type: 'test', // Simplificado de 'icons'
+        title: "Elige el símbolo que representa tu filosofía para afrontar cambios:",
+        options: [
+            { text: "El molino: un gigante al que retar para crecer.", value: "quijote"},
+            { text: "El libro: la sabiduría acumulada para tomar mejores decisiones.", value: "sancho"},
+            { text: "La estrella: una guía lejana que inspira pero no impone el camino.", value: "mixto"}
+        ]
+    },
+    {
+        type: 'test', // Simplificado de 'open'
+        title: "Completa la frase: 'Para liderar en tiempos de incertidumbre, creo que lo más importante es...'",
+        options: [
+            { text: "...mantener una visión clara y audaz que inspire esperanza.", value: "quijote"},
+            { text: "...tener los pies en la tierra y cuidar de tu gente.", value: "sancho"},
+            { text: "...ser flexible, escuchar y adaptarse constantemente.", value: "mixto"}
+        ]
+    }
 ];
 
 const resultProfiles = {
@@ -91,7 +152,6 @@ function startQuiz() {
 }
 
 function showQuestion() {
-  // Actualizar barra de progreso
   const progress = ((currentQuestion) / quizData.length) * 100;
   progressBar.style.width = `${progress}%`;
   
@@ -109,11 +169,9 @@ function showQuestion() {
       btn.className = 'option-btn';
       btn.textContent = opt.text;
       btn.onclick = () => {
-        // Feedback visual inmediato
         btn.classList.add('confirmed');
         setTimeout(() => btn.classList.remove('confirmed'), 200);
 
-        // Lógica de selección
         optionsGroup.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
         userAnswers[currentQuestion] = opt.value;
@@ -126,7 +184,6 @@ function showQuestion() {
 }
 
 function nextQuestion() {
-  // Asegurarse de que el progreso de la pregunta actual se muestre antes de pasar a la siguiente
   const progress = ((currentQuestion + 1) / quizData.length) * 100;
   progressBar.style.width = `${progress}%`;
 
@@ -139,7 +196,7 @@ function nextQuestion() {
   if (currentQuestion < quizData.length) {
     showQuestion();
   } else {
-    showResult();
+    setTimeout(showResult, 400); // Pequeño retardo para que la barra de progreso llegue al 100%
   }
 }
 
@@ -160,7 +217,6 @@ function showResult() {
   document.getElementById('result-text').textContent = resultData.title;
   document.getElementById('result-subtitle').textContent = resultData.subtitle;
   
-  // Rellenar puntos fuertes
   const strengthsList = document.getElementById('result-strengths');
   strengthsList.innerHTML = '';
   resultData.strengths.forEach(strength => {
@@ -169,7 +225,6 @@ function showResult() {
     strengthsList.appendChild(li);
   });
 
-  // Rellenar cita
   document.getElementById('result-quote-text').textContent = `"${resultData.quote.text}"`;
   document.getElementById('result-quote-author').textContent = resultData.quote.author;
 }
