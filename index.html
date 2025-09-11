@@ -4,515 +4,140 @@
   <meta charset="UTF-8">
   <title>¿Eres Quijote o Sancho?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0; 
-      background: linear-gradient(120deg, #f7f4ee 80%, #e7e2d0 100%);
-      min-height: 100vh;
-      font-family: 'Inter', Arial, sans-serif;
-      position: relative;
-    }
-    .bg-decor {
-      position: fixed;
-      z-index: 0;
-      pointer-events: none;
-    }
-    .bg-decor.top-left {
-      top: 0; left: 0; width: 220px; height: 220px;
-      opacity: 0.25;
-      filter: blur(4px);
-    }
-    .bg-decor.bottom-right {
-      bottom: 0; right: 0; width: 260px; height: 210px; 
-      opacity: 0.18;
-      filter: blur(5px);
+      background: #f9f6ef;
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
     }
     .main-container {
-      max-width: 580px; margin: 48px auto 48px auto; position: relative;
-      background: rgba(255,255,255,0.85);
+      max-width: 580px; margin: 48px auto; position: relative;
+      background: #fff;
       border-radius: 24px;
-      box-shadow: 0 8px 36px rgba(183,159,104,0.17), 0 1px 0 rgba(183,159,104,0.09);
-      padding: 2.1em 2em 2.3em 2em;
+      box-shadow: 0 8px 36px rgba(183,159,104,0.17);
+      padding: 2em;
       border: 2.4px solid #e8e2d2;
-      z-index: 1;
-    }
-    .page-frame {
-      background: url('fondo-pergamino.svg') bottom right no-repeat;
-      background-size: 440px;
-      border-radius: 30px;
-      box-shadow: 0 4px 24px rgba(183,159,104,0.18);
-      padding: 0.5em;
     }
     h1 {
-      font-family: 'Playfair Display', serif; color: #b79f68;
-      font-size: 2.3em; margin-bottom: 0.3em; letter-spacing: .02em;
-      text-shadow: 0 1px 0 rgba(183,159,104,0.11);
-      text-align: center;
+      color: #b79f68; font-size: 2em; text-align: center; margin-bottom: 0.5em;
     }
     h2 {
-      font-family: 'Playfair Display', serif; font-size: 1.26em;
-      color: #7c6738; margin-bottom: 0.7em; text-align: center;
+      color: #7c6738; font-size: 1.15em; text-align: center;
     }
     .subtitle {
-      color: #857c5a; font-size: 1.1em; margin-bottom: 1.6em;
-      font-weight: 500; text-align: center;
+      color: #857c5a; font-size: 1em; text-align: center; margin-bottom: 1.4em;
     }
-    .start-btn, .continue-btn, .option-btn, .result-btn {
-      background: linear-gradient(90deg,#b79f68 55%,#e3c57d 100%);
-      color: #fff; border: none; border-radius: 12px;
-      padding: 0.7em 1.5em; cursor: pointer; font-weight: 600;
-      font-size: 1.15em; margin-top: 1.1em; box-shadow: 0 2px 16px rgba(183,159,104,0.11);
-      transition: background 0.14s, box-shadow 0.14s;
-      outline: none;
-      display: inline-flex; align-items: center; gap: 10px;
-    }
-    .start-btn:hover, .continue-btn:hover, .option-btn:hover, .result-btn:hover {
-      background: linear-gradient(90deg,#e3c57d 25%,#b79f68 90%);
-      box-shadow: 0 4px 24px rgba(183,159,104,0.18);
-    }
-    .question-section, .result-section {
-      display: none;
-    }
-    .question-title {
-      font-size: 1.13em; color: #6c5a2e; font-weight: 600;
-      margin-bottom: 1.2em; margin-top: 0.2em; text-align: left;
-    }
-    .options-group { display: flex; flex-direction: column; gap: 1.1em; margin-bottom: 1.3em;}
-    .option-btn {
-      background: rgba(246,244,239,0.88); color: #b79f68; border: 1.5px solid #e3c57d;
-      border-radius: 10px; font-size: 1.09em; font-weight: 500;
-      padding: 0.62em 1.45em; transition: background 0.2s;
-      text-align: left; justify-content: flex-start;
-    }
-    .option-btn.selected, .option-btn:active {
-      background: #e3c57d; color: #fff; border-color: #b79f68;
-    }
-    .draw-icons-group { 
-      display: flex; flex-wrap: wrap; gap: 18px; 
-      justify-content: center; align-items: flex-end; margin-bottom: 1.4em;
+    .draw-icons-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      justify-content: center;
+      margin-bottom: 1.4em;
     }
     .draw-icon {
-      width: 100px; height: 90px; border-radius: 18px;
-      background: rgba(246,244,239,0.94);
-      border: 2.5px solid #e3c57d;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: flex-start;
-      cursor: pointer; transition: border-color 0.18s, box-shadow 0.18s;
-      box-shadow: 0 2px 16px rgba(183,159,104,0.09);
-      font-size: 2em;
-      position: relative;
-      padding: 0.3em 0 0.5em 0;
+      width: 100px; height: 110px;
+      background: #f6f4ef;
+      border: 2px solid #e3c57d;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 2px 8px rgba(183,159,104,0.09);
+      cursor: pointer;
+      padding: 10px 4px 4px 4px;
+      transition: border-color 0.18s, box-shadow 0.18s;
     }
     .draw-icon.selected {
       border-color: #b79f68; box-shadow: 0 2px 12px rgba(183,159,104,0.12)
     }
     .draw-icon svg {
+      width: 52px; height: 52px; margin-bottom: 7px; margin-top: 2px;
       display: block;
-      margin: 0 auto;
-      width: 40px; height: 40px;
     }
     .draw-icon-label {
-      margin-top: 0.3em;
-      font-size: 1em;
-      font-weight: 500;
+      font-size: 0.89em;
       color: #857c5a;
-      letter-spacing: .01em;
       text-align: center;
-      max-width: 90px;
+      font-weight: 500;
+      max-width: 88px;
+      min-height: 2em;
+      line-height: 1.18em;
+      margin: 0;
+      padding: 2px 0 0 0;
       white-space: normal;
+      word-break: break-word;
       overflow: hidden;
-      text-overflow: unset;
-      line-height: 1.15em;
       display: block;
-      min-height: 2.2em;
-      max-height: 2.4em;
     }
-    .story-text { font-style: italic; font-size: 1.07em; color: #857c5a; margin-bottom: 1.1em;}
-    .answer-input, .story-input {
-      width: 97%; padding: 0.6em 1em; border-radius: 10px; border: 1.7px solid #b79f68;
-      font-size: 1.09em; margin-bottom: 1em; background: #f6f4ef;
-      color: #857c5a; font-family: inherit;
-    }
-    .badge-img {
-      width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1.2em;
-      display: block; margin-left: auto; margin-right: auto; box-shadow: 0 4px 18px rgba(183,159,104,0.12);
-      background: rgba(255,255,255,0.98);
-      border: 3px solid #b79f68;
-    }
-    .result-text { font-size: 1.19em; color: #6c5a2e; font-weight: 600; margin-top: 0.6em; margin-bottom: 1.1em; text-align: center;}
-    .result-section .subtitle {text-align: center;}
     @media (max-width: 700px) {
-      .main-container { max-width: 99vw; padding: 0.8em 0.2em;}
-      h1 { font-size: 1.45em;}
-      .badge-img { width: 68px; height: 68px;}
-      .draw-icon { width: 65px; height: 54px; font-size: 1em;}
-      .draw-icon-label { font-size: 0.72em; max-width: 54px; min-height: 1.4em; max-height: 2.1em;}
-      .draw-icon svg { width: 24px; height: 24px;}
+      .main-container { max-width: 98vw; padding: 0.8em 0.2em;}
+      h1 { font-size: 1.35em;}
+      .draw-icon { width: 58px; height: 63px; }
+      .draw-icon svg { width: 28px; height: 28px;}
+      .draw-icon-label { font-size: 0.7em; max-width: 50px; min-height: 1.3em;}
     }
   </style>
 </head>
 <body>
-  <!-- Fondo decorativo SVGs -->
-  <svg class="bg-decor top-left" viewBox="0 0 220 220"><ellipse cx="110" cy="110" rx="105" ry="91" fill="#b79f68" /><ellipse cx="80" cy="60" rx="52" ry="39" fill="#e3c57d" /></svg>
-  <svg class="bg-decor bottom-right" viewBox="0 0 260 210"><ellipse cx="130" cy="120" rx="110" ry="90" fill="#c0b9a6" /><ellipse cx="170" cy="60" rx="45" ry="32" fill="#e8e2d2" /></svg>
-
-  <div class="main-container page-frame" id="welcome-section">
+  <div class="main-container">
     <h1>¿Eres Quijote o Sancho?</h1>
-    <div class="subtitle">10 retos para descubrir tu personalidad directiva <br>con la sabiduría de los caminantes de La Mancha</div>
-    <img src="quijote-symbolic2.svg" alt="Quijote simbólico" style="width:86px;display:block;margin:auto;margin-bottom:1.5em;">
-    <p>
-      <strong>¿Qué te inspira más?</strong> ¿La audacia de soñar y lanzarte a lo desconocido,<br>
-      o el arte de analizar y cuidar cada paso?<br><br>
-      <em>Responde preguntas, continúa historias y elige símbolos.<br>
-      Al final sabrás si tu liderazgo camina como Don Quijote,<br>
-      medita como Sancho Panza, o mezcla la magia de ambos.</em>
-    </p>
-    <button class="start-btn" onclick="startQuiz()">Comenzar los retos</button>
+    <div class="subtitle">Reto visual de iconos y rótulos</div>
+    <div class="draw-icons-group">
+      <div class="draw-icon">
+        <!-- Molino -->
+        <svg viewBox="0 0 40 40" fill="none">
+          <ellipse cx="20" cy="20" rx="16" ry="13" fill="#b79f68"/>
+          <rect x="18" y="9" width="4" height="22" rx="2" fill="#7c6738"/>
+          <path d="M20 10L27 7" stroke="#857c5a" stroke-width="2"/>
+          <path d="M20 10L13 7" stroke="#857c5a" stroke-width="2"/>
+          <circle cx="20" cy="10" r="2.5" fill="#e3c57d" stroke="#857c5a" stroke-width="1.5"/>
+        </svg>
+        <span class="draw-icon-label">Molino</span>
+      </div>
+      <div class="draw-icon">
+        <!-- Libro -->
+        <svg viewBox="0 0 40 40" fill="none">
+          <rect x="6" y="10" width="28" height="20" rx="4" fill="#e8e2d2" stroke="#b79f68" stroke-width="2"/>
+          <line x1="20" y1="10" x2="20" y2="30" stroke="#857c5a" stroke-width="2"/>
+          <ellipse cx="20" cy="30" rx="6" ry="2" fill="#c0b9a6"/>
+        </svg>
+        <span class="draw-icon-label">Libro</span>
+      </div>
+      <div class="draw-icon">
+        <!-- Sombrero -->
+        <svg viewBox="0 0 40 40" fill="none">
+          <ellipse cx="20" cy="30" rx="12" ry="6" fill="#c0b9a6"/>
+          <ellipse cx="20" cy="24" rx="7" ry="3" fill="#857c5a"/>
+          <rect x="17" y="16" width="6" height="9" rx="2" fill="#e3c57d" stroke="#b79f68" stroke-width="1.5"/>
+        </svg>
+        <span class="draw-icon-label">Sombrero</span>
+      </div>
+      <div class="draw-icon">
+        <!-- Lanza -->
+        <svg viewBox="0 0 40 40" fill="none">
+          <rect x="19" y="7" width="2" height="26" rx="1" fill="#b79f68"/>
+          <polygon points="20,6 23,12 17,12" fill="#e3c57d" stroke="#857c5a" stroke-width="1"/>
+          <ellipse cx="20" cy="33" rx="3" ry="1.5" fill="#c0b9a6"/>
+        </svg>
+        <span class="draw-icon-label">Lanza</span>
+      </div>
+      <div class="draw-icon">
+        <!-- Escudo -->
+        <svg viewBox="0 0 40 40" fill="none">
+          <ellipse cx="20" cy="22" rx="8" ry="12" fill="#e3c57d" stroke="#b79f68" stroke-width="2"/>
+          <ellipse cx="20" cy="24" rx="4" ry="6" fill="#f7f4ee" stroke="#857c5a" stroke-width="1.2"/>
+        </svg>
+        <span class="draw-icon-label">Escudo</span>
+      </div>
+      <div class="draw-icon">
+        <!-- Estrella -->
+        <svg viewBox="0 0 40 40" fill="none">
+          <polygon points="20,6 23,16 34,16 25,22 28,33 20,27 12,33 15,22 6,16 17,16" fill="#e3c57d" stroke="#b79f68" stroke-width="1.5"/>
+        </svg>
+        <span class="draw-icon-label">Estrella</span>
+      </div>
+    </div>
   </div>
-
-  <div class="main-container page-frame question-section" id="question-section">
-    <h2 id="question-counter"></h2>
-    <div class="question-title" id="question-title"></div>
-    <div id="question-content"></div>
-    <button class="continue-btn" id="continue-btn" onclick="nextQuestion()" style="display:none">Continuar</button>
-  </div>
-
-  <div class="main-container page-frame result-section" id="result-section">
-    <img id="badge-img" class="badge-img" src="" alt="Medalla Quijote/Sancho">
-    <div class="result-text" id="result-text"></div>
-    <div class="subtitle" id="result-subtitle"></div>
-    <button class="result-btn" onclick="restartQuiz()">Volver a empezar</button>
-  </div>
-
-  <script>
-    // --- Preguntas y retos ---
-    // Iconos SVG adultos y simbólicos
-    const iconsSVG = {
-      molino: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="20" rx="16" ry="13" fill="#b79f68"/><rect x="18" y="9" width="4" height="22" rx="2" fill="#7c6738"/><path d="M20 10L27 7" stroke="#857c5a" stroke-width="2"/><path d="M20 10L13 7" stroke="#857c5a" stroke-width="2"/><circle cx="20" cy="10" r="2.5" fill="#e3c57d" stroke="#857c5a" stroke-width="1.5"/></svg>`,
-      camino: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="8" y="18" width="24" height="6" rx="3" fill="#e8e2d2"/><path d="M20 24v9" stroke="#b79f68" stroke-width="2"/><ellipse cx="20" cy="33" rx="5" ry="2" fill="#c0b9a6"/></svg>`,
-      estrella: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><polygon points="20,6 23,16 34,16 25,22 28,33 20,27 12,33 15,22 6,16 17,16" fill="#e3c57d" stroke="#b79f68" stroke-width="1.5"/></svg>`,
-      libro: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="6" y="10" width="28" height="20" rx="4" fill="#e8e2d2" stroke="#b79f68" stroke-width="2"/><line x1="20" y1="10" x2="20" y2="30" stroke="#857c5a" stroke-width="2"/><ellipse cx="20" cy="30" rx="6" ry="2" fill="#c0b9a6"/></svg>`,
-      sombrero: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="30" rx="12" ry="6" fill="#c0b9a6"/><ellipse cx="20" cy="24" rx="7" ry="3" fill="#857c5a"/><rect x="17" y="16" width="6" height="9" rx="2" fill="#e3c57d" stroke="#b79f68" stroke-width="1.5"/></svg>`,
-      lanza: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="19" y="7" width="2" height="26" rx="1" fill="#b79f68"/><polygon points="20,6 23,12 17,12" fill="#e3c57d" stroke="#857c5a" stroke-width="1"/><ellipse cx="20" cy="33" rx="3" ry="1.5" fill="#c0b9a6"/></svg>`,
-      escudo: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="22" rx="8" ry="12" fill="#e3c57d" stroke="#b79f68" stroke-width="2"/><ellipse cx="20" cy="24" rx="4" ry="6" fill="#f7f4ee" stroke="#857c5a" stroke-width="1.2"/></svg>`,
-      idea: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="18" rx="8" ry="10" fill="#e3c57d"/><rect x="17" y="28" width="6" height="5" rx="2" fill="#b79f68"/><ellipse cx="20" cy="34" rx="3" ry="1.4" fill="#c0b9a6"/></svg>`,
-      analisis: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="13" y="12" width="14" height="16" rx="5" fill="#e8e2d2" stroke="#b79f68" stroke-width="1.7"/><circle cx="20" cy="20" r="4.2" fill="#c0b9a6"/><rect x="18" y="26" width="4" height="4" rx="2" fill="#b79f68"/></svg>`,
-      accion: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="15" y="11" width="10" height="18" rx="5" fill="#e3c57d"/><ellipse cx="20" cy="31" rx="6" ry="2" fill="#c0b9a6"/><polygon points="20,10 28,12 12,12" fill="#b79f68"/></svg>`,
-      reflexion: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="22" rx="8" ry="10" fill="#e8e2d2"/><rect x="17" y="28" width="6" height="5" rx="2" fill="#b79f68"/><ellipse cx="20" cy="34" rx="3" ry="1.4" fill="#c0b9a6"/><ellipse cx="20" cy="18" rx="4" ry="2" fill="#c0b9a6"/></svg>`,
-    };
-    const quizData = [
-      { // 1. Test
-        type: 'test',
-        title: "En una reunión inesperada, ¿cómo actúas primero?",
-        options: [
-          { text: "Propongo una idea audaz y original", value: "quijote", icon: iconsSVG.idea },
-          { text: "Escucho y analizo antes de decidir", value: "sancho", icon: iconsSVG.analisis },
-          { text: "Busco una solución creativa en equipo", value: "mixto", icon: iconsSVG.accion }
-        ]
-      },
-      { // 2. Mixta
-        type: 'test',
-        title: "¿Qué símbolo te inspira más cuando afrontas el cambio?",
-        options: [
-          { text: "El molino: desafío y visión", value: "quijote", icon: iconsSVG.molino },
-          { text: "El camino: prudencia y constancia", value: "sancho", icon: iconsSVG.camino },
-          { text: "La estrella: guía en lo desconocido", value: "mixto", icon: iconsSVG.estrella }
-        ]
-      },
-      { // 3. Abierta
-        type: 'open',
-        title: "Imagina que tienes que convencer a tu equipo de embarcarse en una aventura arriesgada.<br>¿Qué les dirías?",
-        placeholder: "Escribe tu mensaje inspirador aquí…"
-      },
-      { // 4. Mini-cuento
-        type: 'story',
-        title: "Mini historia: El equipo se encuentra ante un cruce de caminos en plena Mancha.",
-        story: "Don Quijote propone seguir la senda desconocida, Sancho sugiere preguntar a los lugareños.<br>¿Cómo continúa la historia?",
-        options: [
-          { text: "Tomar el sendero desconocido", value: "quijote" },
-          { text: "Consultar a los sabios del lugar", value: "sancho" },
-          { text: "Esperar a que se despeje el camino", value: "mixto" }
-        ]
-      },
-      { // 5. Dibujo/Elección de iconos
-        type: 'icons',
-        title: "Elige dos símbolos que representan tu liderazgo:",
-        icons: [
-          { name: "Molino", value: "quijote", svg: iconsSVG.molino },
-          { name: "Libro", value: "sancho", svg: iconsSVG.libro },
-          { name: "Sombrero", value: "mixto", svg: iconsSVG.sombrero },
-          { name: "Lanza", value: "quijote", svg: iconsSVG.lanza },
-          { name: "Escudo", value: "sancho", svg: iconsSVG.escudo }
-        ],
-        selectCount: 2
-      },
-      { // 6. Test / Decisión rápida
-        type: 'test',
-        title: "¿Te lanzas sin conocer todos los detalles o planificas minuciosamente antes de avanzar?",
-        options: [
-          { text: "Me lanzo y confío en mi intuición", value: "quijote", icon: iconsSVG.lanza },
-          { text: "Planifico cada paso", value: "sancho", icon: iconsSVG.libro },
-          { text: "Busco equilibrio y flexibilidad", value: "mixto", icon: iconsSVG.sombrero }
-        ]
-      },
-      { // 7. Secuencia de decisión (elige el orden)
-        type: 'order',
-        title: "Arrastra los iconos para ordenar tu proceso de toma de decisiones:",
-        steps: [
-          { name: "Idea", value: "quijote", svg: iconsSVG.idea },
-          { name: "Análisis", value: "sancho", svg: iconsSVG.analisis },
-          { name: "Acción", value: "quijote", svg: iconsSVG.accion },
-          { name: "Reflexión", value: "sancho", svg: iconsSVG.reflexion }
-        ]
-      },
-      { // 8. Mini-historia con elección
-        type: 'story',
-        title: "Don Quijote y Sancho Panza debaten sobre arriesgarse en una nueva aventura empresarial.",
-        story: "¿Qué aportas tú a la conversación?",
-        options: [
-          { text: "Animar a soñar y atreverse", value: "quijote" },
-          { text: "Recordar la importancia de medir riesgos", value: "sancho" },
-          { text: "Buscar una alternativa creativa", value: "mixto" }
-        ]
-      },
-      { // 9. Pregunta creativa
-        type: 'icons',
-        title: "Elige el símbolo que representa tu filosofía para afrontar cambios:",
-        icons: [
-          { name: "Molino", value: "quijote", svg: iconsSVG.molino },
-          { name: "Libro", value: "sancho", svg: iconsSVG.libro },
-          { name: "Estrella", value: "mixto", svg: iconsSVG.estrella }
-        ],
-        selectCount: 1
-      },
-      { // 10. Abierta / Reflexión final
-        type: 'open',
-        title: "Completa la frase: 'Para liderar en tiempos de incertidumbre, creo que lo más importante es...'",
-        placeholder: "Escribe tu reflexión final aquí…"
-      }
-    ];
-    // --- Estado del cuestionario ---
-    let currentQuestion = 0;
-    let scores = { quijote: 0, sancho: 0, mixto: 0 };
-    let userAnswers = [];
-
-    // --- Mostrar pregunta/reto actual ---
-    function startQuiz() {
-      document.getElementById('welcome-section').style.display = "none";
-      document.getElementById('result-section').style.display = "none";
-      document.getElementById('question-section').style.display = "block";
-      currentQuestion = 0;
-      scores = { quijote: 0, sancho: 0, mixto: 0 };
-      userAnswers = [];
-      showQuestion();
-    }
-
-    function showQuestion() {
-      const q = quizData[currentQuestion];
-      document.getElementById('question-counter').textContent = `Reto ${currentQuestion + 1} de 10`;
-      document.getElementById('question-title').innerHTML = q.title;
-      const contentDiv = document.getElementById('question-content');
-      contentDiv.innerHTML = '';
-      document.getElementById('continue-btn').style.display = 'none';
-
-      if (q.type === 'test') {
-        const optionsGroup = document.createElement('div');
-        optionsGroup.className = 'options-group';
-        q.options.forEach((opt, i) => {
-          const btn = document.createElement('button');
-          btn.className = 'option-btn';
-          btn.innerHTML = `<span style="vertical-align:middle;">${opt.icon}</span> ${opt.text}`;
-          btn.onclick = () => {
-            optionsGroup.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-            userAnswers[currentQuestion] = opt.value;
-            document.getElementById('continue-btn').style.display = '';
-          };
-          optionsGroup.appendChild(btn);
-        });
-        contentDiv.appendChild(optionsGroup);
-
-      } else if (q.type === 'open') {
-        const input = document.createElement('textarea');
-        input.className = 'answer-input';
-        input.placeholder = q.placeholder || "";
-        input.rows = 3;
-        input.oninput = () => {
-          userAnswers[currentQuestion] = input.value.trim();
-          document.getElementById('continue-btn').style.display = input.value.trim().length > 0 ? '' : 'none';
-        };
-        contentDiv.appendChild(input);
-
-      } else if (q.type === 'story') {
-        const storyText = document.createElement('div');
-        storyText.className = 'story-text';
-        storyText.innerHTML = q.story;
-        contentDiv.appendChild(storyText);
-        const optionsGroup = document.createElement('div');
-        optionsGroup.className = 'options-group';
-        q.options.forEach(opt => {
-          const btn = document.createElement('button');
-          btn.className = 'option-btn';
-          btn.textContent = opt.text;
-          btn.onclick = () => {
-            optionsGroup.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-            userAnswers[currentQuestion] = opt.value;
-            document.getElementById('continue-btn').style.display = '';
-          };
-          optionsGroup.appendChild(btn);
-        });
-        contentDiv.appendChild(optionsGroup);
-
-      } else if (q.type === 'icons') {
-        const iconsGroup = document.createElement('div');
-        iconsGroup.className = 'draw-icons-group';
-        let selected = [];
-        q.icons.forEach((icon, idx) => {
-          const iconDiv = document.createElement('div');
-          iconDiv.className = 'draw-icon';
-          iconDiv.innerHTML = `${icon.svg}<div class="draw-icon-label">${icon.name}</div>`;
-          iconDiv.onclick = function() {
-            if (iconDiv.classList.contains('selected')) {
-              iconDiv.classList.remove('selected');
-              selected = selected.filter(v => v !== icon.value);
-            } else {
-              if (selected.length < q.selectCount) {
-                iconDiv.classList.add('selected');
-                selected.push(icon.value);
-              } else {
-                return;
-              }
-            }
-            userAnswers[currentQuestion] = selected.slice();
-            document.getElementById('continue-btn').style.display = selected.length === q.selectCount ? '' : 'none';
-          };
-          iconsGroup.appendChild(iconDiv);
-        });
-        contentDiv.appendChild(iconsGroup);
-
-      } else if (q.type === 'order') {
-        // Secuencia tipo drag & drop
-        const steps = q.steps.map(s => ({...s}));
-        const container = document.createElement('div');
-        container.className = 'draw-icons-group';
-        steps.forEach((step, idx) => {
-          const iconDiv = document.createElement('div');
-          iconDiv.className = 'draw-icon';
-          iconDiv.draggable = true;
-          iconDiv.innerHTML = `${step.svg}<div class="draw-icon-label">${step.name}</div>`;
-          iconDiv.dataset.idx = idx;
-          iconDiv.ondragstart = function(e) {
-            e.dataTransfer.setData("text/plain", idx);
-          };
-          iconDiv.ondragover = function(e) { e.preventDefault(); };
-          iconDiv.ondrop = function(e) {
-            e.preventDefault();
-            const from = Number(e.dataTransfer.getData("text/plain"));
-            const to = Number(iconDiv.dataset.idx);
-            [steps[from], steps[to]] = [steps[to], steps[from]];
-            renderSteps();
-          };
-          container.appendChild(iconDiv);
-        });
-        function renderSteps() {
-          while (container.firstChild) container.removeChild(container.firstChild);
-          steps.forEach((step, idx) => {
-            const iconDiv = document.createElement('div');
-            iconDiv.className = 'draw-icon';
-            iconDiv.draggable = true;
-            iconDiv.innerHTML = `${step.svg}<div class="draw-icon-label">${step.name}</div>`;
-            iconDiv.dataset.idx = idx;
-            iconDiv.ondragstart = function(e) { e.dataTransfer.setData("text/plain", idx); };
-            iconDiv.ondragover = function(e) { e.preventDefault(); };
-            iconDiv.ondrop = function(e) {
-              e.preventDefault();
-              const from = Number(e.dataTransfer.getData("text/plain"));
-              const to = Number(iconDiv.dataset.idx);
-              [steps[from], steps[to]] = [steps[to], steps[from]];
-              renderSteps();
-            };
-            container.appendChild(iconDiv);
-          });
-        }
-        renderSteps();
-        contentDiv.appendChild(container);
-        document.getElementById('continue-btn').style.display = '';
-        userAnswers[currentQuestion] = steps.map(s => s.value);
-      }
-    }
-
-    function nextQuestion() {
-      const answer = userAnswers[currentQuestion];
-      const q = quizData[currentQuestion];
-      if (q.type === 'test' || q.type === 'story') {
-        if (answer === 'quijote') scores.quijote++;
-        else if (answer === 'sancho') scores.sancho++;
-        else scores.mixto++;
-      } else if (q.type === 'icons') {
-        if (Array.isArray(answer)) {
-          answer.forEach(val => {
-            if (val === 'quijote') scores.quijote++;
-            else if (val === 'sancho') scores.sancho++;
-            else scores.mixto++;
-          });
-        } else {
-          if (answer === 'quijote') scores.quijote++;
-          else if (answer === 'sancho') scores.sancho++;
-          else scores.mixto++;
-        }
-      } else if (q.type === 'order') {
-        const order = answer;
-        if (order[0] === 'quijote' && order[order.length-1] === 'sancho') scores.quijote++;
-        else if (order[0] === 'sancho' && order[order.length-1] === 'quijote') scores.sancho++;
-        else scores.mixto++;
-      }
-      if (q.type === 'open') scores.mixto++;
-
-      currentQuestion++;
-      if (currentQuestion < quizData.length) {
-        showQuestion();
-      } else {
-        showResult();
-      }
-    }
-
-    // --- Medallas SVG elegantes ---
-    const badgeSVG = {
-      quijote: "medalla-quijote-simbolica.svg",
-      sancho: "medalla-sancho-simbolica.svg",
-      mixto: "medalla-mixto-simbolica.svg"
-    };
-
-    function showResult() {
-      document.getElementById('question-section').style.display = 'none';
-      document.getElementById('result-section').style.display = 'block';
-      let profile = "mixto";
-      if (scores.quijote > scores.sancho && scores.quijote > scores.mixto) profile = "quijote";
-      else if (scores.sancho > scores.quijote && scores.sancho > scores.mixto) profile = "sancho";
-      let badgeSrc = badgeSVG[profile];
-      let resultText = "";
-      let subtitle = "";
-      if (profile === "quijote") {
-        resultText = "Caminas como Don Quijote";
-        subtitle = "Tu liderazgo es visionario, audaz y capaz de inspirar aventuras. Sueñas en grande, te atreves a romper moldes y contagias entusiasmo.";
-      } else if (profile === "sancho") {
-        resultText = "Meditas como Sancho Panza";
-        subtitle = "Tu liderazgo es prudente, reflexivo y creativo en lo cotidiano. Analizas, cuidas a tu equipo y conviertes los sueños en caminos reales.";
-      } else {
-        resultText = "Eres Quijote y Sancho a la vez";
-        subtitle = "Sabes soñar y lanzarte, pero también analizar y cuidar. Tu liderazgo combina visión y pragmatismo, imaginación y sentido común.";
-      }
-      document.getElementById('badge-img').src = badgeSrc;
-      document.getElementById('result-text').textContent = resultText;
-      document.getElementById('result-subtitle').textContent = subtitle;
-    }
-
-    function restartQuiz() {
-      document.getElementById('result-section').style.display = "none";
-      document.getElementById('welcome-section').style.display = "block";
-    }
-  </script>
 </body>
 </html>
