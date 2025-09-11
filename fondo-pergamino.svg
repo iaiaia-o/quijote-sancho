@@ -1,0 +1,21 @@
+<svg width="440" height="440" viewBox="0 0 440 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgRadial" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#f7f4ee" />
+      <stop offset="70%" stop-color="#e7e2d0" />
+      <stop offset="100%" stop-color="#d2c5a0" />
+    </radialGradient>
+    <linearGradient id="filigrana" x1="0" y1="0" x2="440" y2="440" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#b79f68" stop-opacity="0.11"/>
+      <stop offset="0.6" stop-color="#e3c57d" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#857c5a" stop-opacity="0.11"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="440" height="440" rx="42" fill="url(#bgRadial)" />
+  <!-- Filigrana decorativa -->
+  <path d="M18,36 Q40,18 80,40 Q160,80 220,38 Q280,10 380,60 Q420,80 422,126" stroke="url(#filigrana)" stroke-width="4" fill="none"/>
+  <path d="M32,410 Q80,430 160,392 Q220,370 270,430 Q360,410 410,375" stroke="url(#filigrana)" stroke-width="4" fill="none"/>
+  <!-- Esquinas degradadas -->
+  <ellipse cx="50" cy="48" rx="27" ry="18" fill="#e3c57d" opacity="0.21"/>
+  <ellipse cx="390" cy="390" rx="24" ry="14" fill="#b79f68" opacity="0.15"/>
+</svg>

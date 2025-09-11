@@ -7,26 +7,55 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0; background: #f6f4ef; color: #312b23;
+      margin: 0; 
+      background: linear-gradient(120deg, #f7f4ee 80%, #e7e2d0 100%);
+      min-height: 100vh;
       font-family: 'Inter', Arial, sans-serif;
+      position: relative;
+    }
+    .bg-decor {
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .bg-decor.top-left {
+      top: 0; left: 0; width: 220px; height: 220px;
+      opacity: 0.25;
+      filter: blur(4px);
+    }
+    .bg-decor.bottom-right {
+      bottom: 0; right: 0; width: 260px; height: 210px; 
+      opacity: 0.18;
+      filter: blur(5px);
     }
     .main-container {
-      max-width: 580px; margin: 34px auto 34px auto;
-      background: #fff; border-radius: 18px; box-shadow: 0 4px 32px rgba(87,82,71,0.09);
-      padding: 2em 1.6em 2em 1.6em;
+      max-width: 580px; margin: 48px auto 48px auto; position: relative;
+      background: rgba(255,255,255,0.85);
+      border-radius: 24px;
+      box-shadow: 0 8px 36px rgba(183,159,104,0.17), 0 1px 0 rgba(183,159,104,0.09);
+      padding: 2.1em 2em 2.3em 2em;
+      border: 2.4px solid #e8e2d2;
+    }
+    .page-frame {
+      background: url('https://raw.githubusercontent.com/iaiaia-o/quijote-day/main/fondo-pergamino.svg') bottom right no-repeat;
+      background-size: 440px;
+      border-radius: 30px;
+      box-shadow: 0 4px 24px rgba(183,159,104,0.18);
+      padding: 0.5em;
     }
     h1 {
       font-family: 'Playfair Display', serif; color: #b79f68;
       font-size: 2.3em; margin-bottom: 0.3em; letter-spacing: .02em;
       text-shadow: 0 1px 0 rgba(183,159,104,0.11);
+      text-align: center;
     }
     h2 {
-      font-family: 'Playfair Display', serif; font-size: 1.3em;
-      color: #7c6738; margin-bottom: 0.7em;
+      font-family: 'Playfair Display', serif; font-size: 1.26em;
+      color: #7c6738; margin-bottom: 0.7em; text-align: center;
     }
     .subtitle {
       color: #857c5a; font-size: 1.1em; margin-bottom: 1.6em;
-      font-weight: 500;
+      font-weight: 500; text-align: center;
     }
     .start-btn, .continue-btn, .option-btn, .result-btn {
       background: linear-gradient(90deg,#b79f68 55%,#e3c57d 100%);
@@ -46,51 +75,72 @@
     }
     .question-title {
       font-size: 1.13em; color: #6c5a2e; font-weight: 600;
-      margin-bottom: 1.2em; margin-top: 0.2em;
+      margin-bottom: 1.2em; margin-top: 0.2em; text-align: left;
     }
-    .options-group { display: flex; flex-direction: column; gap: 0.7em; margin-bottom: 1.3em;}
+    .options-group { display: flex; flex-direction: column; gap: 1.1em; margin-bottom: 1.3em;}
     .option-btn {
-      background: #f6f4ef; color: #b79f68; border: 1.5px solid #e3c57d;
-      border-radius: 9px; font-size: 1.09em; font-weight: 500;
-      padding: 0.58em 1.2em; transition: background 0.2s;
+      background: rgba(246,244,239,0.88); color: #b79f68; border: 1.5px solid #e3c57d;
+      border-radius: 10px; font-size: 1.09em; font-weight: 500;
+      padding: 0.62em 1.45em; transition: background 0.2s;
       text-align: left; justify-content: flex-start;
     }
     .option-btn.selected, .option-btn:active {
       background: #e3c57d; color: #fff; border-color: #b79f68;
     }
-    .draw-icons-group { display: flex; gap: 15px; justify-content: center; margin-bottom: 1.2em;}
+    .draw-icons-group { 
+      display: flex; flex-wrap: wrap; gap: 32px; 
+      justify-content: center; align-items: center; margin-bottom: 1.4em;
+    }
     .draw-icon {
-      width: 44px; height: 44px; border-radius: 50%; background: #f6f4ef;
-      border: 2px solid #e3c57d; display: flex; align-items: center; justify-content: center;
+      width: 70px; height: 70px; border-radius: 20px; background: rgba(246,244,239,0.94);
+      border: 2.5px solid #e3c57d; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
       cursor: pointer; transition: border-color 0.18s, box-shadow 0.18s;
+      box-shadow: 0 2px 16px rgba(183,159,104,0.09);
+      font-size: 2.1em;
+      position: relative;
     }
     .draw-icon.selected {
       border-color: #b79f68; box-shadow: 0 2px 12px rgba(183,159,104,0.12)
     }
+    .draw-icon-label {
+      margin-top: 0.2em;
+      font-size: 0.93em;
+      color: #857c5a;
+      font-style: italic;
+      letter-spacing: .01em;
+    }
     .story-text { font-style: italic; font-size: 1.07em; color: #857c5a; margin-bottom: 1.1em;}
     .answer-input, .story-input {
-      width: 97%; padding: 0.6em 1em; border-radius: 7px; border: 1.3px solid #b79f68;
+      width: 97%; padding: 0.6em 1em; border-radius: 10px; border: 1.7px solid #b79f68;
       font-size: 1.09em; margin-bottom: 1em; background: #f6f4ef;
       color: #857c5a; font-family: inherit;
     }
     .badge-img {
-      width: 90px; height: 90px; border-radius: 50%; margin-bottom: 1.2em;
-      display: block; margin-left: auto; margin-right: auto; box-shadow: 0 4px 16px rgba(183,159,104,0.14);
+      width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1.2em;
+      display: block; margin-left: auto; margin-right: auto; box-shadow: 0 4px 18px rgba(183,159,104,0.12);
+      background: rgba(255,255,255,0.98);
+      border: 3px solid #b79f68;
     }
-    .result-text { font-size: 1.18em; color: #6c5a2e; font-weight: 600; margin-top: 0.6em; margin-bottom: 1.1em;}
+    .result-text { font-size: 1.19em; color: #6c5a2e; font-weight: 600; margin-top: 0.6em; margin-bottom: 1.1em; text-align: center;}
     .result-section .subtitle {text-align: center;}
     @media (max-width: 700px) {
-      .main-container { max-width: 99vw; padding: 1em 0.5em;}
-      h1 { font-size: 1.5em;}
-      .badge-img { width: 56px; height: 56px;}
+      .main-container { max-width: 99vw; padding: 0.8em 0.2em;}
+      h1 { font-size: 1.45em;}
+      .badge-img { width: 68px; height: 68px;}
+      .draw-icon { width: 52px; height: 52px; font-size: 1.33em;}
     }
   </style>
 </head>
 <body>
-  <div class="main-container" id="welcome-section">
+  <!-- Fondo decorativo SVGs -->
+  <svg class="bg-decor top-left" viewBox="0 0 220 220"><ellipse cx="110" cy="110" rx="105" ry="91" fill="#b79f68" /><ellipse cx="80" cy="60" rx="52" ry="39" fill="#e3c57d" /></svg>
+  <svg class="bg-decor bottom-right" viewBox="0 0 260 210"><ellipse cx="130" cy="120" rx="110" ry="90" fill="#c0b9a6" /><ellipse cx="170" cy="60" rx="45" ry="32" fill="#e8e2d2" /></svg>
+
+  <div class="main-container page-frame" id="welcome-section">
     <h1>¿Eres Quijote o Sancho?</h1>
     <div class="subtitle">10 retos para descubrir tu personalidad directiva <br>con la sabiduría de los caminantes de La Mancha</div>
-    <img src="https://raw.githubusercontent.com/iaiaia-o/quijote-day/main/quijote-symbolic.svg" alt="Quijote simbólico" style="width:66px;display:block;margin:auto;margin-bottom:1.3em;">
+    <img src="https://raw.githubusercontent.com/iaiaia-o/quijote-day/main/quijote-symbolic2.svg" alt="Quijote simbólico" style="width:86px;display:block;margin:auto;margin-bottom:1.5em;">
     <p>
       <strong>¿Qué te inspira más?</strong> ¿La audacia de soñar y lanzarte a lo desconocido,<br>
       o el arte de analizar y cuidar cada paso?<br><br>
@@ -101,14 +151,14 @@
     <button class="start-btn" onclick="startQuiz()">Comenzar los retos</button>
   </div>
 
-  <div class="main-container question-section" id="question-section">
+  <div class="main-container page-frame question-section" id="question-section">
     <h2 id="question-counter"></h2>
     <div class="question-title" id="question-title"></div>
     <div id="question-content"></div>
     <button class="continue-btn" id="continue-btn" onclick="nextQuestion()" style="display:none">Continuar</button>
   </div>
 
-  <div class="main-container result-section" id="result-section">
+  <div class="main-container page-frame result-section" id="result-section">
     <img id="badge-img" class="badge-img" src="" alt="Medalla Quijote/Sancho">
     <div class="result-text" id="result-text"></div>
     <div class="subtitle" id="result-subtitle"></div>
@@ -117,24 +167,37 @@
 
   <script>
     // --- Preguntas y retos ---
-    // Cada reto tiene: tipo, título, contenido, opciones, iconos, historia, etc.
+    // Iconos SVG adultos y simbólicos
+    const iconsSVG = {
+      molino: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="20" rx="16" ry="13" fill="#b79f68"/><rect x="18" y="9" width="4" height="22" rx="2" fill="#7c6738"/><path d="M20 10L27 7" stroke="#857c5a" stroke-width="2"/><path d="M20 10L13 7" stroke="#857c5a" stroke-width="2"/><circle cx="20" cy="10" r="2.5" fill="#e3c57d" stroke="#857c5a" stroke-width="1.5"/></svg>`,
+      camino: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="8" y="18" width="24" height="6" rx="3" fill="#e8e2d2"/><path d="M20 24v9" stroke="#b79f68" stroke-width="2"/><ellipse cx="20" cy="33" rx="5" ry="2" fill="#c0b9a6"/></svg>`,
+      estrella: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><polygon points="20,6 23,16 34,16 25,22 28,33 20,27 12,33 15,22 6,16 17,16" fill="#e3c57d" stroke="#b79f68" stroke-width="1.5"/></svg>`,
+      libro: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="6" y="10" width="28" height="20" rx="4" fill="#e8e2d2" stroke="#b79f68" stroke-width="2"/><line x1="20" y1="10" x2="20" y2="30" stroke="#857c5a" stroke-width="2"/><ellipse cx="20" cy="30" rx="6" ry="2" fill="#c0b9a6"/></svg>`,
+      sombrero: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="30" rx="12" ry="6" fill="#c0b9a6"/><ellipse cx="20" cy="24" rx="7" ry="3" fill="#857c5a"/><rect x="17" y="16" width="6" height="9" rx="2" fill="#e3c57d" stroke="#b79f68" stroke-width="1.5"/></svg>`,
+      lanza: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="19" y="7" width="2" height="26" rx="1" fill="#b79f68"/><polygon points="20,6 23,12 17,12" fill="#e3c57d" stroke="#857c5a" stroke-width="1"/><ellipse cx="20" cy="33" rx="3" ry="1.5" fill="#c0b9a6"/></svg>`,
+      escudo: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="22" rx="8" ry="12" fill="#e3c57d" stroke="#b79f68" stroke-width="2"/><ellipse cx="20" cy="24" rx="4" ry="6" fill="#f7f4ee" stroke="#857c5a" stroke-width="1.2"/></svg>`,
+      idea: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="18" rx="8" ry="10" fill="#e3c57d"/><rect x="17" y="28" width="6" height="5" rx="2" fill="#b79f68"/><ellipse cx="20" cy="34" rx="3" ry="1.4" fill="#c0b9a6"/></svg>`,
+      analisis: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="13" y="12" width="14" height="16" rx="5" fill="#e8e2d2" stroke="#b79f68" stroke-width="1.7"/><circle cx="20" cy="20" r="4.2" fill="#c0b9a6"/><rect x="18" y="26" width="4" height="4" rx="2" fill="#b79f68"/></svg>`,
+      accion: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="15" y="11" width="10" height="18" rx="5" fill="#e3c57d"/><ellipse cx="20" cy="31" rx="6" ry="2" fill="#c0b9a6"/><polygon points="20,10 28,12 12,12" fill="#b79f68"/></svg>`,
+      reflexion: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="22" rx="8" ry="10" fill="#e8e2d2"/><rect x="17" y="28" width="6" height="5" rx="2" fill="#b79f68"/><ellipse cx="20" cy="34" rx="3" ry="1.4" fill="#c0b9a6"/><ellipse cx="20" cy="18" rx="4" ry="2" fill="#c0b9a6"/></svg>`,
+    };
     const quizData = [
       { // 1. Test
         type: 'test',
         title: "En una reunión inesperada, ¿cómo actúas primero?",
         options: [
-          { text: "Propongo una idea audaz y original", value: "quijote", icon: "🌟" },
-          { text: "Escucho y analizo antes de decidir", value: "sancho", icon: "🛡️" },
-          { text: "Busco una solución creativa en equipo", value: "mixto", icon: "🤝" }
+          { text: "Propongo una idea audaz y original", value: "quijote", icon: iconsSVG.idea },
+          { text: "Escucho y analizo antes de decidir", value: "sancho", icon: iconsSVG.analisis },
+          { text: "Busco una solución creativa en equipo", value: "mixto", icon: iconsSVG.accion }
         ]
       },
       { // 2. Mixta
         type: 'test',
         title: "¿Qué símbolo te inspira más cuando afrontas el cambio?",
         options: [
-          { text: "El molino: desafío y visión", value: "quijote", icon: "🌬️" },
-          { text: "El camino: prudencia y constancia", value: "sancho", icon: "🛤️" },
-          { text: "La estrella: guía en lo desconocido", value: "mixto", icon: "⭐" }
+          { text: "El molino: desafío y visión", value: "quijote", icon: iconsSVG.molino },
+          { text: "El camino: prudencia y constancia", value: "sancho", icon: iconsSVG.camino },
+          { text: "La estrella: guía en lo desconocido", value: "mixto", icon: iconsSVG.estrella }
         ]
       },
       { // 3. Abierta
@@ -156,11 +219,11 @@
         type: 'icons',
         title: "Elige dos símbolos que representan tu liderazgo:",
         icons: [
-          { name: "Molino", value: "quijote", svg: "🌬️" },
-          { name: "Libro", value: "sancho", svg: "📚" },
-          { name: "Sombrero", value: "mixto", svg: "🎩" },
-          { name: "Lanza", value: "quijote", svg: "🗡️" },
-          { name: "Escudo", value: "sancho", svg: "🛡️" }
+          { name: "Molino", value: "quijote", svg: iconsSVG.molino },
+          { name: "Libro", value: "sancho", svg: iconsSVG.libro },
+          { name: "Sombrero", value: "mixto", svg: iconsSVG.sombrero },
+          { name: "Lanza", value: "quijote", svg: iconsSVG.lanza },
+          { name: "Escudo", value: "sancho", svg: iconsSVG.escudo }
         ],
         selectCount: 2
       },
@@ -168,19 +231,19 @@
         type: 'test',
         title: "¿Te lanzas sin conocer todos los detalles o planificas minuciosamente antes de avanzar?",
         options: [
-          { text: "Me lanzo y confío en mi intuición", value: "quijote", icon: "⚡" },
-          { text: "Planifico cada paso", value: "sancho", icon: "🗺️" },
-          { text: "Busco equilibrio y flexibilidad", value: "mixto", icon: "⚖️" }
+          { text: "Me lanzo y confío en mi intuición", value: "quijote", icon: iconsSVG.lanza },
+          { text: "Planifico cada paso", value: "sancho", icon: iconsSVG.libro },
+          { text: "Busco equilibrio y flexibilidad", value: "mixto", icon: iconsSVG.sombrero }
         ]
       },
       { // 7. Secuencia de decisión (elige el orden)
         type: 'order',
         title: "Arrastra los iconos para ordenar tu proceso de toma de decisiones:",
         steps: [
-          { name: "Idea", value: "quijote", svg: "💡" },
-          { name: "Análisis", value: "sancho", svg: "🔎" },
-          { name: "Acción", value: "quijote", svg: "🏇" },
-          { name: "Reflexión", value: "sancho", svg: "🤔" }
+          { name: "Idea", value: "quijote", svg: iconsSVG.idea },
+          { name: "Análisis", value: "sancho", svg: iconsSVG.analisis },
+          { name: "Acción", value: "quijote", svg: iconsSVG.accion },
+          { name: "Reflexión", value: "sancho", svg: iconsSVG.reflexion }
         ]
       },
       { // 8. Mini-historia con elección
@@ -197,9 +260,9 @@
         type: 'icons',
         title: "Elige el símbolo que representa tu filosofía para afrontar cambios:",
         icons: [
-          { name: "Molino", value: "quijote", svg: "🌬️" },
-          { name: "Libro", value: "sancho", svg: "📚" },
-          { name: "Estrella", value: "mixto", svg: "⭐" }
+          { name: "Molino", value: "quijote", svg: iconsSVG.molino },
+          { name: "Libro", value: "sancho", svg: iconsSVG.libro },
+          { name: "Estrella", value: "mixto", svg: iconsSVG.estrella }
         ],
         selectCount: 1
       },
@@ -239,7 +302,7 @@
         q.options.forEach((opt, i) => {
           const btn = document.createElement('button');
           btn.className = 'option-btn';
-          btn.innerHTML = (opt.icon ? `<span>${opt.icon}</span> ` : '') + opt.text;
+          btn.innerHTML = `<span style="vertical-align:middle;">${opt.icon}</span> ${opt.text}`;
           btn.onclick = () => {
             optionsGroup.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
@@ -289,8 +352,7 @@
         q.icons.forEach((icon, idx) => {
           const iconDiv = document.createElement('div');
           iconDiv.className = 'draw-icon';
-          iconDiv.innerHTML = `<span style="font-size:2em;">${icon.svg}</span><br>
-            <span style="font-size:0.83em;color:#857c5a">${icon.name}</span>`;
+          iconDiv.innerHTML = `${icon.svg}<div class="draw-icon-label">${icon.name}</div>`;
           iconDiv.onclick = function() {
             if (iconDiv.classList.contains('selected')) {
               iconDiv.classList.remove('selected');
@@ -300,7 +362,6 @@
                 iconDiv.classList.add('selected');
                 selected.push(icon.value);
               } else {
-                // solo se pueden seleccionar los indicados
                 return;
               }
             }
@@ -320,8 +381,7 @@
           const iconDiv = document.createElement('div');
           iconDiv.className = 'draw-icon';
           iconDiv.draggable = true;
-          iconDiv.innerHTML = `<span style="font-size:2em;">${step.svg}</span><br>
-            <span style="font-size:0.83em;color:#857c5a">${step.name}</span>`;
+          iconDiv.innerHTML = `${step.svg}<div class="draw-icon-label">${step.name}</div>`;
           iconDiv.dataset.idx = idx;
           iconDiv.ondragstart = function(e) {
             e.dataTransfer.setData("text/plain", idx);
@@ -331,9 +391,7 @@
             e.preventDefault();
             const from = Number(e.dataTransfer.getData("text/plain"));
             const to = Number(iconDiv.dataset.idx);
-            // Intercambiar posiciones
             [steps[from], steps[to]] = [steps[to], steps[from]];
-            // Volver a renderizar
             renderSteps();
           };
           container.appendChild(iconDiv);
@@ -344,8 +402,7 @@
             const iconDiv = document.createElement('div');
             iconDiv.className = 'draw-icon';
             iconDiv.draggable = true;
-            iconDiv.innerHTML = `<span style="font-size:2em;">${step.svg}</span><br>
-              <span style="font-size:0.83em;color:#857c5a">${step.name}</span>`;
+            iconDiv.innerHTML = `${step.svg}<div class="draw-icon-label">${step.name}</div>`;
             iconDiv.dataset.idx = idx;
             iconDiv.ondragstart = function(e) { e.dataTransfer.setData("text/plain", idx); };
             iconDiv.ondragover = function(e) { e.preventDefault(); };
@@ -361,15 +418,12 @@
         }
         renderSteps();
         contentDiv.appendChild(container);
-        // Continuar solo si el orden ha cambiado
-        let initialOrder = q.steps.map(s => s.name).join(",");
         document.getElementById('continue-btn').style.display = '';
         userAnswers[currentQuestion] = steps.map(s => s.value);
       }
     }
 
     function nextQuestion() {
-      // Calcular puntuaciones por tipo de respuesta
       const answer = userAnswers[currentQuestion];
       const q = quizData[currentQuestion];
       if (q.type === 'test' || q.type === 'story') {
@@ -389,13 +443,11 @@
           else scores.mixto++;
         }
       } else if (q.type === 'order') {
-        // Si el primer paso es "Idea" y el último es "Reflexión" es quijote, si es "Análisis" y "Acción" es sancho, mixto si alterna
         const order = answer;
         if (order[0] === 'quijote' && order[order.length-1] === 'sancho') scores.quijote++;
         else if (order[0] === 'sancho' && order[order.length-1] === 'quijote') scores.sancho++;
         else scores.mixto++;
       }
-      // Preguntas abiertas suman a mixto
       if (q.type === 'open') scores.mixto++;
 
       currentQuestion++;
@@ -406,28 +458,29 @@
       }
     }
 
-    // --- Mostrar resultado final ---
+    // --- Medallas SVG elegantes ---
+    const badgeSVG = {
+      quijote: "https://raw.githubusercontent.com/iaiaia-o/quijote-day/main/medalla-quijote-simbolica.svg",
+      sancho: "https://raw.githubusercontent.com/iaiaia-o/quijote-day/main/medalla-sancho-simbolica.svg",
+      mixto: "https://raw.githubusercontent.com/iaiaia-o/quijote-day/main/medalla-mixto-simbolica.svg"
+    };
+
     function showResult() {
       document.getElementById('question-section').style.display = 'none';
       document.getElementById('result-section').style.display = 'block';
-      // Calcular el perfil dominante
       let profile = "mixto";
       if (scores.quijote > scores.sancho && scores.quijote > scores.mixto) profile = "quijote";
       else if (scores.sancho > scores.quijote && scores.sancho > scores.mixto) profile = "sancho";
-      // Medalla visual
-      let badgeSrc = "";
+      let badgeSrc = badgeSVG[profile];
       let resultText = "";
       let subtitle = "";
       if (profile === "quijote") {
-        badgeSrc = "https://raw.githubusercontent.com/iaiaia-o/quijote-day/main/medalla-quijote.svg";
         resultText = "Caminas como Don Quijote";
         subtitle = "Tu liderazgo es visionario, audaz y capaz de inspirar aventuras. Sueñas en grande, te atreves a romper moldes y contagias entusiasmo.";
       } else if (profile === "sancho") {
-        badgeSrc = "https://raw.githubusercontent.com/iaiaia-o/quijote-day/main/medalla-sancho.svg";
         resultText = "Meditas como Sancho Panza";
         subtitle = "Tu liderazgo es prudente, reflexivo y creativo en lo cotidiano. Analizas, cuidas a tu equipo y conviertes los sueños en caminos reales.";
       } else {
-        badgeSrc = "https://raw.githubusercontent.com/iaiaia-o/quijote-day/main/medalla-mixto.svg";
         resultText = "Eres Quijote y Sancho a la vez";
         subtitle = "Sabes soñar y lanzarte, pero también analizar y cuidar. Tu liderazgo combina visión y pragmatismo, imaginación y sentido común.";
       }
