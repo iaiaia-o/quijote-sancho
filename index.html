@@ -35,9 +35,10 @@
       box-shadow: 0 8px 36px rgba(183,159,104,0.17), 0 1px 0 rgba(183,159,104,0.09);
       padding: 2.1em 2em 2.3em 2em;
       border: 2.4px solid #e8e2d2;
+      z-index: 1;
     }
     .page-frame {
-      background: url('https://raw.githubusercontent.com/iaiaia-o/quijote-day/main/fondo-pergamino.svg') bottom right no-repeat;
+      background: url('fondo-pergamino.svg') bottom right no-repeat;
       background-size: 440px;
       border-radius: 30px;
       box-shadow: 0 4px 24px rgba(183,159,104,0.18);
@@ -88,27 +89,35 @@
       background: #e3c57d; color: #fff; border-color: #b79f68;
     }
     .draw-icons-group { 
-      display: flex; flex-wrap: wrap; gap: 32px; 
+      display: flex; flex-wrap: wrap; gap: 24px; 
       justify-content: center; align-items: center; margin-bottom: 1.4em;
     }
     .draw-icon {
-      width: 70px; height: 70px; border-radius: 20px; background: rgba(246,244,239,0.94);
+      width: 72px; height: 72px; border-radius: 18px; background: rgba(246,244,239,0.94);
       border: 2.5px solid #e3c57d; display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       cursor: pointer; transition: border-color 0.18s, box-shadow 0.18s;
       box-shadow: 0 2px 16px rgba(183,159,104,0.09);
-      font-size: 2.1em;
+      font-size: 2em;
       position: relative;
+      padding-bottom: 0.7em;
     }
     .draw-icon.selected {
       border-color: #b79f68; box-shadow: 0 2px 12px rgba(183,159,104,0.12)
     }
     .draw-icon-label {
-      margin-top: 0.2em;
-      font-size: 0.93em;
+      margin-top: 0.1em;
+      font-size: 0.86em;
+      font-weight: 400;
       color: #857c5a;
       font-style: italic;
       letter-spacing: .01em;
+      text-align: center;
+      max-width: 62px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block;
     }
     .story-text { font-style: italic; font-size: 1.07em; color: #857c5a; margin-bottom: 1.1em;}
     .answer-input, .story-input {
@@ -128,7 +137,8 @@
       .main-container { max-width: 99vw; padding: 0.8em 0.2em;}
       h1 { font-size: 1.45em;}
       .badge-img { width: 68px; height: 68px;}
-      .draw-icon { width: 52px; height: 52px; font-size: 1.33em;}
+      .draw-icon { width: 46px; height: 46px; font-size: 1.18em;}
+      .draw-icon-label { font-size: 0.70em; max-width: 38px;}
     }
   </style>
 </head>
@@ -140,7 +150,7 @@
   <div class="main-container page-frame" id="welcome-section">
     <h1>¿Eres Quijote o Sancho?</h1>
     <div class="subtitle">10 retos para descubrir tu personalidad directiva <br>con la sabiduría de los caminantes de La Mancha</div>
-    <img src="https://raw.githubusercontent.com/iaiaia-o/quijote-day/main/quijote-symbolic2.svg" alt="Quijote simbólico" style="width:86px;display:block;margin:auto;margin-bottom:1.5em;">
+    <img src="quijote-symbolic2.svg" alt="Quijote simbólico" style="width:86px;display:block;margin:auto;margin-bottom:1.5em;">
     <p>
       <strong>¿Qué te inspira más?</strong> ¿La audacia de soñar y lanzarte a lo desconocido,<br>
       o el arte de analizar y cuidar cada paso?<br><br>
@@ -460,9 +470,9 @@
 
     // --- Medallas SVG elegantes ---
     const badgeSVG = {
-      quijote: "https://raw.githubusercontent.com/iaiaia-o/quijote-day/main/medalla-quijote-simbolica.svg",
-      sancho: "https://raw.githubusercontent.com/iaiaia-o/quijote-day/main/medalla-sancho-simbolica.svg",
-      mixto: "https://raw.githubusercontent.com/iaiaia-o/quijote-day/main/medalla-mixto-simbolica.svg"
+      quijote: "medalla-quijote-simbolica.svg",
+      sancho: "medalla-sancho-simbolica.svg",
+      mixto: "medalla-mixto-simbolica.svg"
     };
 
     function showResult() {
