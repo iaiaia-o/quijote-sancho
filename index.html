@@ -100,24 +100,27 @@
       box-shadow: 0 2px 16px rgba(183,159,104,0.09);
       font-size: 2em;
       position: relative;
-      padding-bottom: 0.7em;
+      padding-bottom: 0.5em;
     }
     .draw-icon.selected {
       border-color: #b79f68; box-shadow: 0 2px 12px rgba(183,159,104,0.12)
     }
     .draw-icon-label {
-      margin-top: 0.1em;
-      font-size: 0.86em;
-      font-weight: 400;
+      margin-top: 0.15em;
+      font-size: 0.97em;
+      font-weight: 500;
       color: #857c5a;
       font-style: italic;
       letter-spacing: .01em;
       text-align: center;
-      max-width: 62px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      max-width: 100%;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
+      line-height: 1.1em;
       display: block;
+      min-height: 2em;
+      word-break: break-word;
     }
     .story-text { font-style: italic; font-size: 1.07em; color: #857c5a; margin-bottom: 1.1em;}
     .answer-input, .story-input {
@@ -138,7 +141,7 @@
       h1 { font-size: 1.45em;}
       .badge-img { width: 68px; height: 68px;}
       .draw-icon { width: 46px; height: 46px; font-size: 1.18em;}
-      .draw-icon-label { font-size: 0.70em; max-width: 38px;}
+      .draw-icon-label { font-size: 0.75em; min-height: 1.4em;}
     }
   </style>
 </head>
