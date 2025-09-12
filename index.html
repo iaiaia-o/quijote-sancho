@@ -15,7 +15,7 @@
   <svg class="bg-decor bottom-right" viewBox="0 0 260 210"><ellipse cx="130" cy="120" rx="110" ry="90" fill="#c0b9a6" /><ellipse cx="170" cy="60" rx="45" ry="32" fill="#e8e2d2" /></svg>
 
   <main>
-    <section class="main-container page-frame" id="welcome-section">
+    <section class="main-container" id="welcome-section">
       <h1>¿Eres Quijote o Sancho?</h1>
       <p class="subtitle">Descubre tu arquetipo de liderazgo</p>
       <img src="quijote-symbolic2.svg" alt="Símbolo de Don Quijote" class="welcome-image">
@@ -25,7 +25,7 @@
       <button class="start-btn" onclick="startQuiz()">Comenzar el Test</button>
     </section>
 
-    <section class="main-container page-frame question-section" id="question-section">
+    <section class="main-container question-section" id="question-section">
       <div id="progress-container">
         <div id="progress-bar"></div>
       </div>
@@ -34,23 +34,49 @@
       <div id="question-content"></div>
       <button class="continue-btn" id="continue-btn" onclick="nextQuestion()" style="display:none">Continuar</button>
     </section>
+    
+    <section class="main-container reflection-section" id="reflection-section">
+        <div id="reflection-icon" class="reflection-icon"></div>
+        <p class="reflection-intro" id="reflection-intro"></p>
+        <p class="question-title" id="reflection-question"></p>
+        <textarea id="reflection-input" class="answer-input" rows="5" placeholder="Tu reflexión..."></textarea>
+        <button class="continue-btn" id="reflection-continue-btn" onclick="nextReflectionStep()" style="display:none">Continuar</button>
+    </section>
 
-    <section class="main-container page-frame result-section" id="result-section">
-      <img id="badge-img" class="badge-img" src="" alt="Medalla del Perfil">
-      <h2 class="result-title" id="result-text"></h2>
-      <p class="subtitle" id="result-subtitle"></p>
-      
-      <div class="result-details">
-        <h3>Tus Puntos Fuertes</h3>
-        <ul id="result-strengths"></ul>
+    <section class="main-container result-section" id="result-section">
+      <div id="loader" class="loader">
+        <p>Forjando tu escudo...</p>
+        <div class="spinner"></div>
       </div>
+      <div id="result-content" class="hidden">
+        <img id="badge-img" class="badge-img" src="" alt="Medalla del Perfil">
+        <h2 class="result-title" id="result-text"></h2>
+        <p class="subtitle" id="result-subtitle"></p>
+        
+        <div class="result-details">
+          <h3>Tus Puntos Fuertes</h3>
+          <ul id="result-strengths"></ul>
+        </div>
 
-      <div class="result-quote">
-        <p id="result-quote-text"></p>
-        <span id="result-quote-author"></span>
+        <div class="result-quote">
+          <p id="result-quote-text"></p>
+          <span id="result-quote-author"></span>
+        </div>
+
+        <div class="ai-analysis" id="ai-analysis-section">
+            <h3>Análisis de tu Liderazgo</h3>
+            <p id="ai-analysis-text"></p>
+        </div>
+
+        <div class="ai-analysis" id="ai-shield-section">
+            <h3>Tu Escudo Heráldico</h3>
+            <div id="ai-shield-image-container">
+                </div>
+            <p id="ai-shield-text"></p>
+        </div>
+
+        <button class="result-btn" onclick="restartQuiz()">Volver a empezar</button>
       </div>
-
-      <button class="result-btn" onclick="restartQuiz()">Volver a empezar</button>
     </section>
   </main>
 
