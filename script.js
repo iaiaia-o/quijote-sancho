@@ -387,4 +387,5 @@ function restartQuiz() {
     dom.resultSection.style.display = "none";
     dom.reflectionSection.style.display = 'none';
     dom.welcomeSection.style.display = "block";
+
 }
