@@ -50,21 +50,21 @@ const quizData = [
 
 // Contenido de los perfiles de resultado
 const resultProfiles = {
-  quijote: { name: "Quijote", title: "Liderazgo Visionario: El Quijote", subtitle: "Tu fortaleza reside en tu capacidad para inspirar, ver más allá de lo evidente y movilizar a otros hacia un futuro audaz.", badge: "medalla-quijote-simbolica.svg", strengths: ["Visión Estratégica", "Pasión Contagiosa", "Coraje Innovador"], quote: { text: "Confía en el tiempo, que suele dar dulces salidas a muchas amargas dificultades.", author: "- Miguel de Cervantes" } },
-  sancho: { name: "Sancho", title: "Liderazgo Prudente: El Sancho", subtitle: "Tu fortaleza es tu sabiduría práctica, tu enfoque en la realidad y tu habilidad para cuidar del equipo y los recursos.", badge: "medalla-sancho-simbolica.svg", strengths: ["Pragmatismo Eficaz", "Gestión de Riesgos", "Lealtad y Cohesión"], quote: { text: "Más vale un 'toma' que dos 'te daré'.", author: "- Miguel de Cervantes" } },
-  mixto: { name: "Líder Sabio", title: "Liderazgo Sabio: El Híbrido", subtitle: "Combinas lo mejor de ambos mundos: la audacia para soñar y la sensatez para construir. Eres un líder adaptable y completo.", badge: "medalla-mixto-simbolica.svg", strengths: ["Equilibrio Estratégico", "Adaptabilidad", "Sabiduría Integradora"], quote: { text: "El que lee mucho y anda mucho, ve mucho y sabe mucho.", author: "- Miguel de Cervantes" } }
+  quijote: { name: "Quijote", title: "Liderazgo Visionario: Quijote", subtitle: "Tu fortaleza reside en tu capacidad para inspirar, ver más allá de lo evidente y movilizar a otros hacia un futuro audaz.", badge: "medalla-quijote-simbolica.svg", strengths: ["Visión Estratégica", "Pasión Contagiosa", "Coraje Innovador"], quote: { text: "Confía en el tiempo, que suele dar dulces salidas a muchas amargas dificultades.", author: "- Miguel de Cervantes" } },
+  sancho: { name: "Sancho", title: "Liderazgo Prudente: Sancho", subtitle: "Tu fortaleza es tu sabiduría práctica, tu enfoque en la realidad y tu habilidad para cuidar del equipo y los recursos.", badge: "medalla-sancho-simbolica.svg", strengths: ["Pragmatismo Eficaz", "Gestión de Riesgos", "Lealtad y Cohesión"], quote: { text: "Más vale un 'toma' que dos 'te daré'.", author: "- Miguel de Cervantes" } },
+  mixto: { name: "Guía Esencial", title: "Guía Esencial: Integración y Equilibrio", subtitle: "Combinas lo mejor de ambos mundos: la audacia para soñar y la sensatez para construir. Eres un líder adaptable y completo.", badge: "medalla-mixto-simbolica.svg", strengths: ["Equilibrio Estratégico", "Adaptabilidad", "Sabiduría Integradora"], quote: { text: "El que lee mucho y anda mucho, ve mucho y sabe mucho.", author: "- Miguel de Cervantes" } }
 };
 
 // Contenido de la fase de reflexión
 const reflectionContent = {
     quijote: {
-        questions: ["Como el Quijote que persigue sus sueños, te será fácil identificar qué cosas estás haciendo en tu trabajo que tienes que seguir haciendo.", "Como el Quijote que a veces lucha contra molinos, cae por su propio peso identificar las cosas que haces y que tendrías que dejar de hacer...", "Como el Quijote que se dispone a escribir nuevas hazañas, has comprendido las cosas que no estás haciendo y que vas a comenzar a hacer inmediatamente."]
+        questions: ["Como Quijote que persigue sus sueños, te será fácil identificar qué cosas estás haciendo en tu trabajo que tienes que seguir haciendo.", "Como el Quijote que a veces lucha contra molinos, cae por su propio peso identificar las cosas que haces y que tendrías que dejar de hacer...", "Como Quijote que se dispone a escribir nuevas hazañas, has comprendido las cosas que no estás haciendo y que vas a comenzar a hacer inmediatamente."]
     },
     sancho: {
-        questions: ["Como el Sancho que avanza con sabiduría y pies en la tierra, te será fácil identificar qué cosas estás haciendo en tu trabajo que tienes que seguir haciendo.", "Como el Sancho que a veces duda ante lo desconocido, cae por su propio peso identificar las cosas que haces y que tendrías que dejar de hacer...", "Como el Sancho que se prepara para gobernar su propia ínsula, has comprendido las cosas que no estás haciendo y que vas a comenzar a hacer inmediatamente."]
+        questions: ["Como Sancho que avanza con sabiduría y pies en la tierra, te será fácil identificar qué cosas estás haciendo en tu trabajo que tienes que seguir haciendo.", "Como Sancho que a veces duda ante lo desconocido, cae por su propio peso identificar las cosas que haces y que tendrías que dejar de hacer...", "Como Sancho que se prepara para gobernar su propia ínsula, has comprendido las cosas que no estás haciendo y que vas a comenzar a hacer inmediatamente."]
     },
     mixto: {
-        questions: ["Como el Líder Sabio que equilibra visión y realidad, te será fácil identificar qué cosas estás haciendo en tu trabajo que tienes que seguir haciendo.", "Como el estratega que a veces puede sobre-analizar, cae por su propio peso identificar las cosas que haces y que tendrías que dejar de hacer...", "Como el caminante que se adentra en un nuevo capítulo de su viaje, has comprendido las cosas que no estás haciendo y que vas a comenzar a hacer inmediatamente."]
+        questions: ["Como Guía Esencial que equilibra visión y realidad, te será fácil identificar qué cosas estás haciendo en tu trabajo que tienes que seguir haciendo.", "Como el estratega que a veces puede sobre-analizar, cae por su propio peso identificar las cosas que haces y que tendrías que dejar de hacer...", "Como caminante que se adentra en un nuevo capítulo de su viaje, has comprendido las cosas que no estás haciendo y que vas a comenzar a hacer inmediatamente."]
     },
     icons: ['🌱', '⛓️', '🌅']
 };
@@ -383,5 +383,6 @@ function restartQuiz() {
     dom.welcomeSection.style.display = "block";
 
 }
+
 
 
