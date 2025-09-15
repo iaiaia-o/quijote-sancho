@@ -295,7 +295,7 @@ function startReflection() {
     dom.reflectionContinueBtn.style.display = 'none';
     
     const profileName = resultProfiles[finalProfile].name;
-    dom.reflectionIntro.textContent = `Como ${profileName}, vamos a crear tu Escudo Heráldico de Caballero Andante.`;
+    dom.reflectionIntro.textContent = `Como ${profileName}, vamos a crear tu Escudo Disruptivo e Inspirador de la Caballería Andante.`;
     dom.reflectionIcon.innerHTML = '🛡️';
 
     setTimeout(() => showReflectionQuestion(0), 2500);
@@ -383,4 +383,5 @@ function restartQuiz() {
     dom.welcomeSection.style.display = "block";
 
 }
+
 
