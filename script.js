@@ -354,13 +354,7 @@ async function showFinalResult() {
     dom.quoteAuthor.textContent = resultData.author;
     
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    const aiAnalysisText = "En tus reflexiones se percibe un claro liderazgo orientado a la acción ('comenzar', 'hacer'). Tu deseo de seguir fortaleciendo al equipo revela un enfoque empático, muy alineado con la visión de Quijote, pero con la prudencia de Sancho al querer eliminar ineficiencias. Es una combinación poderosa que inspira y construye.";
-    dom.aiAnalysisText.textContent = aiAnalysisText;
-
-    const aiShieldDescription = "Tu escudo presenta un **león con una llave en la boca**, simbolizando tu coraje para abrir nuevos caminos. El fondo es un **campo de trigo**, que representa la prosperidad y el cuidado de tu equipo que aseguras con tu pragmatismo. El lema en la base reza: **'Audacia et Cura'** (Audacia y Cuidado).";
-    dom.aiShieldText.innerHTML = aiShieldDescription;
-    
+     
     const possibleShields = shieldImages[finalProfile];
     const randomShieldUrl = possibleShields[Math.floor(Math.random() * possibleShields.length)];
 
@@ -389,3 +383,4 @@ function restartQuiz() {
     dom.welcomeSection.style.display = "block";
 
 }
+
